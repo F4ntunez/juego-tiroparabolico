@@ -75,7 +75,7 @@ def move():
             target.x = 200
             target.y = randrange(-150,150)
             
-    #Hacer que vaya mas rapido
+    # Hacer que vaya mas rapido
     ontimer(move, 10)
 
 
