@@ -1,12 +1,9 @@
 """Cannon, hitting targets with projectiles.
-
 Exercises
-
 1. Keep score by counting target hits.
 2. Vary the effect of gravity.
 3. Apply gravity to the targets.
 4. Change the speed of the ball.
-
 """
 
 from random import randrange
@@ -17,6 +14,7 @@ from freegames import vector
 ball = vector(-200, -200)
 speed = vector(0, 0)
 targets = []
+posy = []
 
 
 def tap(x, y):
@@ -52,11 +50,12 @@ def move():
     "Move ball and targets."
     if randrange(40) == 0:
         y = randrange(-150, 150)
+        posy.append(y)
         target = vector(200, y)
         targets.append(target)
 
     for target in targets:
-        target.x -= 0.5
+        target.x -= 1
 
     if inside(ball):
         speed.y -= 0.35
@@ -70,10 +69,12 @@ def move():
             targets.append(target)
 
     draw()
-
+    
     for target in targets:
         if not inside(target):
-            return
+            target.x = 200
+            target.y = randrange(-150,150)
+            
 
     ontimer(move, 50)
 
